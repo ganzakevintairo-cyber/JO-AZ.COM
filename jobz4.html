@@ -1,0 +1,1081 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>JOBAZ.COM - Find Jobs</title>
+
+<style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header {
+    background: #073b74;
+    color: white;
+    padding: 15px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #19a7ff;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: #19a7ff;
+}
+
+.login-btn {
+    border: 1px solid white;
+    padding: 9px 18px;
+    border-radius: 6px;
+}
+
+
+/* =====================================================
+   FIND JOBS HEADER
+===================================================== */
+
+.find-header {
+    text-align: center;
+    padding: 55px 20px 25px;
+}
+
+.find-header h1 {
+    color: #073b74;
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.find-header p {
+    color: #17508c;
+    font-size: 17px;
+}
+
+
+/* =====================================================
+   SEARCH AREA
+===================================================== */
+
+.search-container {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.search-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+}
+
+.search-main input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.search-btn {
+    background: #087cff;
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.search-btn:hover {
+    background: #0569d8;
+}
+
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.filters select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background: white;
+}
+
+.clear-btn {
+    background: #eeeeee;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    padding: 12px;
+}
+
+.clear-btn:hover {
+    background: #ddd;
+}
+
+
+/* =====================================================
+   RESULTS TOP
+===================================================== */
+
+.results-top {
+    max-width: 1100px;
+    margin: 0 auto 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-top h3 {
+    color: #073b74;
+}
+
+.sort-select {
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+
+/* =====================================================
+   JOB LIST
+===================================================== */
+
+.job-list {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+
+/* =====================================================
+   JOB CARD
+===================================================== */
+
+.job-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    position: relative;
+    transition: 0.2s;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+}
+
+.job-card h2 {
+    color: #073b74;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.company {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.job-info {
+    margin: 7px 0;
+    color: #555;
+}
+
+.description {
+    margin-top: 12px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.salary {
+    color: #008c4a;
+    font-weight: bold;
+}
+
+.job-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.apply-btn {
+    background: #087cff;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.apply-btn:hover {
+    background: #0569d8;
+}
+
+.details-btn {
+    background: #073b74;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.save-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   NO RESULTS
+===================================================== */
+
+.no-results {
+    max-width: 1100px;
+    margin: 20px auto 50px;
+    text-align: center;
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    display: none;
+}
+
+.no-results h2 {
+    color: #073b74;
+    margin-bottom: 10px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 650px;
+    margin: 70px auto;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #555;
+}
+
+.modal-content h2 {
+    color: #073b74;
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   APPLICATION FORM
+===================================================== */
+
+.application-form {
+    margin-top: 20px;
+}
+
+.application-form label {
+    display: block;
+    margin-top: 13px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.application-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.submit-application {
+    margin-top: 20px;
+    width: 100%;
+    background: #08a85a;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.submit-application:hover {
+    background: #078c4b;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+    background: #073b74;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width: 800px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .search-main {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .job-list {
+        grid-template-columns: 1fr;
+        padding: 0 15px 40px;
+    }
+
+    .results-top {
+        padding: 0 15px;
+    }
+}
+
+@media(max-width: 500px) {
+
+    .filters {
+        grid-template-columns: 1fr;
+    }
+
+    .find-header h1 {
+        font-size: 30px;
+    }
+
+    .job-buttons {
+        flex-direction: column;
+    }
+
+    .apply-btn,
+    .details-btn {
+        width: 100%;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+        JOBAZ<span>.COM</span>
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="#">
+            Find Jobs
+        </a>
+
+        <a href="#">
+            Post a Job
+        </a>
+
+        <a href="#">
+            About
+        </a>
+
+        <a href="#">
+            Contact
+        </a>
+
+        <a href="#" class="login-btn">
+            Login
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE TITLE
+===================================================== -->
+
+<section class="find-header">
+
+    <h1>
+        🔎 Find Jobs
+    </h1>
+
+    <p>
+        Search for jobs that match your
+        skills and experience.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-container">
+
+    <div class="search-main">
+
+        <input
+            type="text"
+            id="keyword"
+            placeholder="Job title, skill or keyword"
+        >
+
+        <input
+            type="text"
+            id="location"
+            placeholder="Location e.g. Kigali"
+        >
+
+        <button
+            class="search-btn"
+            onclick="searchJobs()">
+
+            SEARCH
+
+        </button>
+
+    </div>
+
+
+    <div class="filters">
+
+        <select id="category">
+
+            <option value="">
+                All Categories
+            </option>
+
+            <option value="technology">
+                Technology
+            </option>
+
+            <option value="transport">
+                Transport
+            </option>
+
+            <option value="design">
+                Design
+            </option>
+
+            <option value="sales">
+                Sales
+            </option>
+
+            <option value="construction">
+                Construction
+            </option>
+
+        </select>
+
+
+        <select id="jobType">
+
+            <option value="">
+                All Job Types
+            </option>
+
+            <option value="full time">
+                Full Time
+            </option>
+
+            <option value="part time">
+                Part Time
+            </option>
+
+            <option value="contract">
+                Contract
+            </option>
+
+            <option value="temporary">
+                Temporary
+            </option>
+
+        </select>
+
+
+        <select id="salary">
+
+            <option value="">
+                Any Salary
+            </option>
+
+            <option value="300000">
+                300,000+ RWF
+            </option>
+
+            <option value="500000">
+                500,000+ RWF
+            </option>
+
+            <option value="1000000">
+                1,000,000+ RWF
+            </option>
+
+        </select>
+
+
+        <button
+            class="clear-btn"
+            onclick="clearFilters()">
+
+            CLEAR FILTERS
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
+
+<div class="results-top">
+
+    <h3 id="resultCount">
+        6 Jobs Found
+    </h3>
+
+    <select
+        class="sort-select"
+        id="sort"
+        onchange="sortJobs()">
+
+        <option value="default">
+            Sort: Latest
+        </option>
+
+        <option value="salaryHigh">
+            Salary: High to Low
+        </option>
+
+        <option value="salaryLow">
+            Salary: Low to High
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- =====================================================
+     JOBS
+===================================================== -->
+
+<div class="job-list" id="jobList">
+
+
+<!-- JOB 1 -->
+
+<div
+    class="job-card"
+    data-title="software developer"
+    data-company="abc technology ltd"
+    data-location="kigali"
+    data-category="technology"
+    data-type="full time"
+    data-salary="800000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Software Developer
+    </h2>
+
+    <div class="company">
+        🏢 ABC Technology Ltd
+    </div>
+
+    <div class="job-info">
+        📍 Kigali, Rwanda
+    </div>
+
+    <div class="job-info salary">
+        💰 Salary: 800,000 RWF
+    </div>
+
+    <div class="job-info">
+        🕐 Full Time
+    </div>
+
+    <p class="description">
+        Looking for a software developer
+        with programming skills to join
+        our technology team.
+    </p>
+
+    <div class="job-buttons">
+
+        <button
+            class="details-btn"
+            onclick="showDetails(
+            'Software Developer',
+            'ABC Technology Ltd',
+            'Kigali, Rwanda',
+            '800,000 RWF',
+            'Full Time',
+            'Looking for a software developer with programming skills to join our technology team.'
+            )">
+
+            VIEW DETAILS
+
+        </button>
+
+        <button
+            class="apply-btn"
+            onclick="openApplication('Software Developer')">
+
+            APPLY NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JOB 2 -->
+
+<div
+    class="job-card"
+    data-title="driver"
+    data-company="rwanda transport company"
+    data-location="kigali"
+    data-category="transport"
+    data-type="full time"
+    data-salary="250000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Driver
+    </h2>
+
+    <div class="company">
+        🏢 Rwanda Transport Company
+    </div>
+
+    <div class="job-info">
+        📍 Kigali, Rwanda
+    </div>
+
+    <div class="job-info salary">
+        💰 Salary: 250,000 RWF
+    </div>
+
+    <div class="job-info">
+        🕐 Full Time
+    </div>
+
+    <p class="description">
+        Experienced driver required for
+        transportation services.
+    </p>
+
+    <div class="job-buttons">
+
+        <button
+            class="details-btn"
+            onclick="showDetails(
+            'Driver',
+            'Rwanda Transport Company',
+            'Kigali, Rwanda',
+            '250,000 RWF',
+            'Full Time',
+            'Experienced driver required for transportation services.'
+            )">
+
+            VIEW DETAILS
+
+        </button>
+
+        <button
+            class="apply-btn"
+            onclick="openApplication('Driver')">
+
+            APPLY NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JOB 3 -->
+
+<div
+    class="job-card"
+    data-title="graphic designer"
+    data-company="creative studio rwanda"
+    data-location="kigali"
+    data-category="design"
+    data-type="part time"
+    data-salary="350000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Graphic Designer
+    </h2>
+
+    <div class="company">
+        🏢 Creative Studio Rwanda
+    </div>
+
+    <div class="job-info">
+        📍 Kigali, Rwanda
+    </div>
+
+    <div class="job-info salary">
+        💰 Salary: 350,000 RWF
+    </div>
+
+    <div class="job-info">
+        🕐 Part Time
+    </div>
+
+    <p class="description">
+        Creative graphic designer needed
+        for digital and branding projects.
+    </p>
+
+    <div class="job-buttons">
+
+        <button
+            class="details-btn"
+            onclick="showDetails(
+            'Graphic Designer',
+            'Creative Studio Rwanda',
+            'Kigali, Rwanda',
+            '350,000 RWF',
+            'Part Time',
+            'Creative graphic designer needed for digital and branding projects.'
+            )">
+
+            VIEW DETAILS
+
+        </button>
+
+        <button
+            class="apply-btn"
+            onclick="openApplication('Graphic Designer')">
+
+            APPLY NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JOB 4 -->
+
+<div
+    class="job-card"
+    data-title="sales representative"
+    data-company="business rwanda ltd"
+    data-location="kigali"
+    data-category="sales"
+    data-type="full time"
+    data-salary="400000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Sales Representative
+    </h2>
+
+    <div class="company">
+        🏢 Business Rwanda Ltd
+    </div>
+
+    <div class="job-info">
+        📍 Kigali, Rwanda
+    </div>
+
+    <div class="job-info salary">
+        💰 Salary: 400,000 RWF
+    </div>
+
+    <div class="job-info">
+        🕐 Full Time
+    </div>
+
+    <p class="description">
+        Sales representative required
+        to work with customers.
+    </p>
+
+    <div class="job-buttons">
+
+        <button
+            class="details-btn"
+            onclick="showDetails(
+            'Sales Representative',
+            'Business Rwanda Ltd',
+            'Kigali, Rwanda',
+            '400,000 RWF',
+            'Full Time',
+            'Sales representative required to work with customers.'
+            )">
+
+            VIEW DETAILS
+
+        </button>
+
+        <button
+            class="apply-btn"
+            onclick="openApplication('Sales Representative')">
+
+            APPLY NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JOB 5 -->
+
+<div
+    class="job-card"
+    data-title="construction worker"
+    data-company="build rwanda"
+    data-location="musanze"
+    data-category="construction"
+    data-type="contract"
+    data-salary="450000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Construction Worker
+    </h2>
+
+    <div class="company">
+        🏢 Build Rwanda
+    </div>
+
+    <div class="job-info">
+        📍 Musanze, Rwanda
+    </div>
+
+    <div class="job-info salary">
+        💰 Salary: 450,000 RWF
+    </div>
+
+    <div class="job-info">
+        🕐 Contract
+    </div>
+
+    <p class="description">
+        Construction workers needed for
+        building and development projects.
+    </p>
+
+    <div class="job-buttons">
+
+        <button
+            class="details-btn"
+            onclick="showDetails(
+            'Construction Worker',
+            'Build Rwanda',
+            'Musanze, Rwanda',
+            '450,000 RWF',
+            'Contract',
+            'Construction workers needed for building and development projects.'
+            )">
+
+            VIEW DETAILS
+
+        </button>
+
+        <button
+            class="apply-btn"
+            onclick="openApplication('Construction Worker')">
+
+            APPLY NOW
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JOB 6 -->
+
+<div
+    class="job-card"
+    data-title="web developer"
+    data-company="digital africa"
+    data-location="huye"
+    data-category="technology"
+    data-type="full time"
+    data-salary="1000000">
+
+    <button
+        class="save-btn"
+        onclick="saveJob(this)">
+        ♡
+    </button>
+
+    <h2>
+        Web Developer
+    </h2>
+
+    <div class="company">
+        🏢 Digital Africa
+    </div>
+
+    <div class="job-info">
+```
